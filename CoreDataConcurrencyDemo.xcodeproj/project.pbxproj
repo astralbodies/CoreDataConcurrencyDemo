@@ -13,6 +13,9 @@
 		938BBBA4198EF98E00410245 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 938BBBA2198EF98E00410245 /* Main.storyboard */; };
 		938BBBA6198EF98E00410245 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 938BBBA5198EF98E00410245 /* Images.xcassets */; };
 		938BBBB2198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938BBBB1198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift */; };
+		938BBBBC198EFB1D00410245 /* ContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938BBBBB198EFB1D00410245 /* ContextManager.swift */; };
+		938BBBBE198F113600410245 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 938BBBBD198F113600410245 /* CoreData.framework */; };
+		93D37AAC198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93D37AAA198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		938BBBAB198EF98F00410245 /* CoreDataConcurrencyDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataConcurrencyDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		938BBBB0198EF98F00410245 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		938BBBB1198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataConcurrencyDemoTests.swift; sourceTree = "<group>"; };
+		938BBBBB198EFB1D00410245 /* ContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextManager.swift; sourceTree = "<group>"; };
+		938BBBBD198F113600410245 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		93D37AAB198FFF6F00213BBD /* CoreDataDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataDemo.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				938BBBBE198F113600410245 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +66,7 @@
 		938BBB8E198EF98E00410245 = {
 			isa = PBXGroup;
 			children = (
+				938BBBBD198F113600410245 /* CoreData.framework */,
 				938BBB99198EF98E00410245 /* CoreDataConcurrencyDemo */,
 				938BBBAE198EF98F00410245 /* CoreDataConcurrencyDemoTests */,
 				938BBB98198EF98E00410245 /* Products */,
@@ -78,11 +86,13 @@
 			isa = PBXGroup;
 			children = (
 				938BBB9C198EF98E00410245 /* AppDelegate.swift */,
+				938BBBBB198EFB1D00410245 /* ContextManager.swift */,
 				938BBB9E198EF98E00410245 /* FirstViewController.swift */,
-				938BBBA0198EF98E00410245 /* SecondViewController.swift */,
-				938BBBA2198EF98E00410245 /* Main.storyboard */,
 				938BBBA5198EF98E00410245 /* Images.xcassets */,
+				938BBBA2198EF98E00410245 /* Main.storyboard */,
+				938BBBA0198EF98E00410245 /* SecondViewController.swift */,
 				938BBB9A198EF98E00410245 /* Supporting Files */,
+				93D37AAA198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld */,
 			);
 			path = CoreDataConcurrencyDemo;
 			sourceTree = "<group>";
@@ -214,6 +224,8 @@
 				938BBBA1198EF98E00410245 /* SecondViewController.swift in Sources */,
 				938BBB9D198EF98E00410245 /* AppDelegate.swift in Sources */,
 				938BBB9F198EF98E00410245 /* FirstViewController.swift in Sources */,
+				93D37AAC198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld in Sources */,
+				938BBBBC198EFB1D00410245 /* ContextManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +413,7 @@
 				938BBBB7198EF98F00410245 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		938BBBB8198EF98F00410245 /* Build configuration list for PBXNativeTarget "CoreDataConcurrencyDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -409,8 +422,22 @@
 				938BBBBA198EF98F00410245 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		93D37AAA198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				93D37AAB198FFF6F00213BBD /* CoreDataDemo.xcdatamodel */,
+			);
+			currentVersion = 93D37AAB198FFF6F00213BBD /* CoreDataDemo.xcdatamodel */;
+			path = CoreDataDemo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 938BBB8F198EF98E00410245 /* Project object */;
 }
