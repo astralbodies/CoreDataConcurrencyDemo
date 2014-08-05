@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class ContextManager {
-    lazy var managedObjectModel: NSManagedObjectModel = {
+    lazy var managedObjectModel: NSManagedObjectModel? = {
         var modelPath = NSBundle.mainBundle().pathForResource("CoreDataDemo", ofType: "momd")
         var modelURL = NSURL.fileURLWithPath(modelPath)
         var model = NSManagedObjectModel(contentsOfURL: modelURL)
@@ -18,7 +18,7 @@ class ContextManager {
         return model
     }()
 
-    lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+    lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         var documentsDirectory = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as String
         var storeURL = NSURL(fileURLWithPath: documentsDirectory.stringByAppendingPathComponent("CoreDataDemo.sqlite"))
         var options = [NSInferMappingModelAutomaticallyOption: true, NSMigratePersistentStoresAutomaticallyOption: true]
@@ -29,7 +29,7 @@ class ContextManager {
         var ps = psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration:nil, URL: storeURL, options: options, error: &error)
         
         if (ps == nil) {
-            println("Error opening the database. \(error)\nDeleting the file and trying again")
+            NSLog("Error opening the database. \(error)\nDeleting the file and trying again")
             abort()
         }
         
@@ -56,7 +56,26 @@ class ContextManager {
         
     }
     
+    func newDerivedContext() -> NSManagedObjectContext {
+        var context: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        context.parentContext = self.mainContext
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
+        return context
+    }
+
+    func saveContext(context: NSManagedObjectContext) {
+        if context.parentContext == self.mainContext {
+            saveDerivedContext(context)
+            return
+        }
+        
+        
+    }
     
+    func saveDerivedContext(context: NSManagedObjectContext) {
+        
+    }
     
 }
 
