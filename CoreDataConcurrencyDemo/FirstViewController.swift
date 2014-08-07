@@ -14,12 +14,15 @@ class FirstViewController: UIViewController {
     @IBOutlet var mainLabel: UILabel?
     @IBOutlet var backgroundLabel: UILabel?
     @IBOutlet var workerLabel: UILabel?
+    var workerContext: NSManagedObjectContext?
                             
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.workerContext = contextManagerSharedInstance.newDerivedContext()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "mainContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: contextManagerSharedInstance.mainContext)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "backgroundContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: contextManagerSharedInstance.rootContext)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "workerContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: self.workerContext)
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,11 +35,11 @@ class FirstViewController: UIViewController {
         
         let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
         dispatch_after(when, dispatch_get_main_queue()) {
-            var context = contextManagerSharedInstance.mainContext
+            var context = contextManagerSharedInstance.mainContext!
             context.performBlock() {
                 var entity: AnyObject = NSEntityDescription.insertNewObjectForEntityForName("TestEntity", inManagedObjectContext: context)
                 
-                self.saveContext(context)
+                contextManagerSharedInstance.saveContext(context)
             }
         }
     }
@@ -46,11 +49,11 @@ class FirstViewController: UIViewController {
         
         let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
         dispatch_after(when, dispatch_get_main_queue()) {
-            var context = contextManagerSharedInstance.rootContext
+            var context = contextManagerSharedInstance.rootContext!
             context.performBlock() {
                 var entity: AnyObject = NSEntityDescription.insertNewObjectForEntityForName("TestEntity", inManagedObjectContext: context)
                 
-                self.saveContext(context)
+                contextManagerSharedInstance.saveContext(context)
             }
         }
     }
@@ -60,11 +63,18 @@ class FirstViewController: UIViewController {
 
         let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
         dispatch_after(when, dispatch_get_main_queue()) {
-            var context = contextManagerSharedInstance.newDerivedContext()
-            context.performBlock() {
-                var entity: AnyObject = NSEntityDescription.insertNewObjectForEntityForName("TestEntity", inManagedObjectContext: context)
+            self.workerContext!.performBlock() {
+                var entity: AnyObject = NSEntityDescription.insertNewObjectForEntityForName("TestEntity", inManagedObjectContext: self.workerContext)
                 
-                self.saveContext(context)
+                var error: NSError? = nil
+                if !(self.workerContext!.obtainPermanentIDsForObjects(self.workerContext!.insertedObjects.allObjects, error: &error)) {
+                    NSLog("Error obtaining permanent IDs for \(self.workerContext!.insertedObjects.allObjects), \(error)")
+                }
+                
+                if !(self.workerContext!.save(&error)) {
+                    NSLog("Unresolved core data error: \(error)")
+                    abort()
+                }
             }
         }
     }
@@ -82,10 +92,10 @@ class FirstViewController: UIViewController {
         
         let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
         dispatch_after(when, dispatch_get_main_queue()) {
-            var context = contextManagerSharedInstance.rootContext
+            var context = contextManagerSharedInstance.rootContext!
             context.performBlock() {
                 context.processPendingChanges()
-                self.saveContext(context)
+                contextManagerSharedInstance.saveContext(context)
             }
         }
     }
@@ -96,17 +106,18 @@ class FirstViewController: UIViewController {
         }
     }
     
+    func workerContextDidSave(notification: NSNotification) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.workerLabel!.backgroundColor = UIColor.greenColor()
+        }
 
-    func saveContext(context: NSManagedObjectContext) {
-        context.performBlock() {
-            var error: NSError?
-            if(!context.obtainPermanentIDsForObjects(context.insertedObjects.allObjects, error: &error)) {
-                NSLog("Error obtaining permanent object IDs for \(context.insertedObjects.allObjects), \(error)")
-            }
-            
-            if(!context.save(&error)) {
-                NSLog("Unresolved core data error\n\(error)")
-                abort()
+        
+        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
+        dispatch_after(when, dispatch_get_main_queue()) {
+            var context = contextManagerSharedInstance.mainContext!
+            context.performBlock() {
+                context.processPendingChanges()
+                contextManagerSharedInstance.saveContext(context)
             }
         }
     }
