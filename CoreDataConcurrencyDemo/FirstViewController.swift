@@ -14,10 +14,13 @@ class FirstViewController: UIViewController {
     @IBOutlet var mainLabel: UILabel?
     @IBOutlet var backgroundLabel: UILabel?
     @IBOutlet var workerLabel: UILabel?
+    @IBOutlet var textView: UITextView?
     var workerContext: NSManagedObjectContext?
                             
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.textView?.text = "Core Data stack initialized."
 
         self.workerContext = contextManagerSharedInstance.newDerivedContext()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "mainContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: contextManagerSharedInstance.mainContext)
