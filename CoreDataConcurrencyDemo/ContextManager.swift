@@ -9,10 +9,14 @@
 import Foundation
 import CoreData
 
-class ContextManager {
+public class ContextManager {
 
-    init() {
+    public init() {
         
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -44,7 +48,7 @@ class ContextManager {
         return psc
     }()
     
-    lazy var rootContext: NSManagedObjectContext? = {
+    public lazy var rootContext: NSManagedObjectContext? = {
         var context: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         context.persistentStoreCoordinator = self.persistentStoreCoordinator
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
@@ -52,15 +56,18 @@ class ContextManager {
         return context
     }()
     
-    lazy var mainContext: NSManagedObjectContext? = {
+    public lazy var mainContext: NSManagedObjectContext? = {
         var mainContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
         mainContext.parentContext = self.rootContext
         mainContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "mainContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: mainContext)
+
         return mainContext
     }()
 
-    func newDerivedContext() -> NSManagedObjectContext {
+    public func newDerivedContext() -> NSManagedObjectContext {
         var context: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         context.parentContext = self.mainContext
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
@@ -68,7 +75,7 @@ class ContextManager {
         return context
     }
 
-    func saveContext(context: NSManagedObjectContext) {
+    public func saveContext(context: NSManagedObjectContext) {
         if context.parentContext === self.mainContext {
             saveDerivedContext(context)
             return
@@ -87,7 +94,7 @@ class ContextManager {
         }
     }
     
-    func saveDerivedContext(context: NSManagedObjectContext) {
+    public func saveDerivedContext(context: NSManagedObjectContext) {
         context.performBlock() {
             var error: NSError? = nil
             if !(context.obtainPermanentIDsForObjects(context.insertedObjects.allObjects, error: &error)) {
@@ -104,6 +111,10 @@ class ContextManager {
             // unregisters it from the save notification instead and rely upon that for merging.
             self.saveContext(self.mainContext!)
         }
+    }
+
+    @objc func mainContextDidSave(notification: NSNotification) {
+        saveContext(rootContext!)
     }
     
 }

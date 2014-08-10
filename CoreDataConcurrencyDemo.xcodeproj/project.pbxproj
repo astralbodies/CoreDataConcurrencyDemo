@@ -15,6 +15,7 @@
 		938BBBB2198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938BBBB1198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift */; };
 		938BBBBC198EFB1D00410245 /* ContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938BBBBB198EFB1D00410245 /* ContextManager.swift */; };
 		938BBBBE198F113600410245 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 938BBBBD198F113600410245 /* CoreData.framework */; };
+		9394277219954E0900B6CC51 /* TestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394277119954E0900B6CC51 /* TestEntity.swift */; };
 		93D37AAC198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93D37AAA198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,8 @@
 		938BBBB1198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataConcurrencyDemoTests.swift; sourceTree = "<group>"; };
 		938BBBBB198EFB1D00410245 /* ContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextManager.swift; sourceTree = "<group>"; };
 		938BBBBD198F113600410245 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9394277019954E0800B6CC51 /* CoreDataConcurrencyDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataConcurrencyDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		9394277119954E0900B6CC51 /* TestEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEntity.swift; sourceTree = "<group>"; };
 		93D37AAB198FFF6F00213BBD /* CoreDataDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataDemo.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +88,7 @@
 		938BBB99198EF98E00410245 /* CoreDataConcurrencyDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9394276F19954DED00B6CC51 /* Model */,
 				938BBB9C198EF98E00410245 /* AppDelegate.swift */,
 				938BBBBB198EFB1D00410245 /* ContextManager.swift */,
 				938BBB9E198EF98E00410245 /* FirstViewController.swift */,
@@ -100,6 +104,7 @@
 		938BBB9A198EF98E00410245 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9394277019954E0800B6CC51 /* CoreDataConcurrencyDemo-Bridging-Header.h */,
 				938BBB9B198EF98E00410245 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -120,6 +125,14 @@
 				938BBBB0198EF98F00410245 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9394276F19954DED00B6CC51 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9394277119954E0900B6CC51 /* TestEntity.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +236,7 @@
 			files = (
 				938BBBA1198EF98E00410245 /* SecondViewController.swift in Sources */,
 				938BBB9D198EF98E00410245 /* AppDelegate.swift in Sources */,
+				9394277219954E0900B6CC51 /* TestEntity.swift in Sources */,
 				938BBB9F198EF98E00410245 /* FirstViewController.swift in Sources */,
 				93D37AAC198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld in Sources */,
 				938BBBBC198EFB1D00410245 /* ContextManager.swift in Sources */,
@@ -343,9 +357,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CoreDataConcurrencyDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CoreDataConcurrencyDemo/CoreDataConcurrencyDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -354,9 +371,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CoreDataConcurrencyDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CoreDataConcurrencyDemo/CoreDataConcurrencyDemo-Bridging-Header.h";
 			};
 			name = Release;
 		};

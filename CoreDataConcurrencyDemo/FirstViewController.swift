@@ -69,15 +69,7 @@ class FirstViewController: UIViewController {
             self.workerContext!.performBlock() {
                 var entity: AnyObject = NSEntityDescription.insertNewObjectForEntityForName("TestEntity", inManagedObjectContext: self.workerContext)
                 
-                var error: NSError? = nil
-                if !(self.workerContext!.obtainPermanentIDsForObjects(self.workerContext!.insertedObjects.allObjects, error: &error)) {
-                    NSLog("Error obtaining permanent IDs for \(self.workerContext!.insertedObjects.allObjects), \(error)")
-                }
-                
-                if !(self.workerContext!.save(&error)) {
-                    NSLog("Unresolved core data error: \(error)")
-                    abort()
-                }
+                contextManagerSharedInstance.saveDerivedContext(self.workerContext!)
             }
         }
     }
@@ -93,14 +85,14 @@ class FirstViewController: UIViewController {
             self.mainLabel!.backgroundColor = UIColor.greenColor()
         }
         
-        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
-        dispatch_after(when, dispatch_get_main_queue()) {
-            var context = contextManagerSharedInstance.rootContext!
-            context.performBlock() {
-                context.processPendingChanges()
-                contextManagerSharedInstance.saveContext(context)
-            }
-        }
+//        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
+//        dispatch_after(when, dispatch_get_main_queue()) {
+//            var context = contextManagerSharedInstance.rootContext!
+//            context.performBlock() {
+//                context.processPendingChanges()
+//                contextManagerSharedInstance.saveContext(context)
+//            }
+//        }
     }
     
     func backgroundContextDidSave(notification: NSNotification) {
@@ -115,14 +107,14 @@ class FirstViewController: UIViewController {
         }
 
         
-        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
-        dispatch_after(when, dispatch_get_main_queue()) {
-            var context = contextManagerSharedInstance.mainContext!
-            context.performBlock() {
-                context.processPendingChanges()
-                contextManagerSharedInstance.saveContext(context)
-            }
-        }
+//        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
+//        dispatch_after(when, dispatch_get_main_queue()) {
+//            var context = contextManagerSharedInstance.mainContext!
+//            context.performBlock() {
+//                context.processPendingChanges()
+//                contextManagerSharedInstance.saveContext(context)
+//            }
+//        }
     }
 }
 
