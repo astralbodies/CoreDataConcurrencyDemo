@@ -20,6 +20,7 @@
 		93D782F219986066008AE45C /* TestContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D782F119986066008AE45C /* TestContextManager.swift */; };
 		93D782F4199945C7008AE45C /* ExampleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D782F3199945C7008AE45C /* ExampleService.swift */; };
 		93D782F61999465C008AE45C /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D782F51999465C008AE45C /* Example.swift */; };
+		93D782FA199948D2008AE45C /* ExampleServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D782F9199948D2008AE45C /* ExampleServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		93D782F119986066008AE45C /* TestContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestContextManager.swift; sourceTree = "<group>"; };
 		93D782F3199945C7008AE45C /* ExampleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleService.swift; sourceTree = "<group>"; };
 		93D782F51999465C008AE45C /* Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
+		93D782F9199948D2008AE45C /* ExampleServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				938BBBB1198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift */,
 				938BBBAF198EF98F00410245 /* Supporting Files */,
 				93D782F119986066008AE45C /* TestContextManager.swift */,
+				93D782F9199948D2008AE45C /* ExampleServiceTests.swift */,
 			);
 			path = CoreDataConcurrencyDemoTests;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			files = (
 				938BBBB2198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift in Sources */,
 				93D782F219986066008AE45C /* TestContextManager.swift in Sources */,
+				93D782FA199948D2008AE45C /* ExampleServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
