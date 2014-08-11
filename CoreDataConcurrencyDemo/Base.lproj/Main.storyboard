@@ -59,7 +59,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbR-zW-zRh">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbR-zW-zRh">
                                 <rect key="frame" x="16" y="445" width="992" height="266"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -84,10 +84,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="7vT-mF-fsi" secondAttribute="trailing" constant="-2" id="4C4-o9-91O"/>
                             <constraint firstItem="N6M-ke-GIV" firstAttribute="top" secondItem="hI2-4E-BnB" secondAttribute="bottom" constant="75" id="4PF-cD-2mS"/>
                             <constraint firstItem="3Kq-NN-Nhy" firstAttribute="top" secondItem="N6M-ke-GIV" secondAttribute="bottom" constant="75" id="4ig-1z-Dde"/>
+                            <constraint firstItem="EbR-zW-zRh" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="5Eb-fF-LIz"/>
                             <constraint firstItem="3Kq-NN-Nhy" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="75" id="6iL-lQ-NTc"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="hUp-q4-sIH" secondAttribute="bottom" constant="200" id="F9M-53-iux"/>
                             <constraint firstItem="3Kq-NN-Nhy" firstAttribute="centerX" secondItem="hI2-4E-BnB" secondAttribute="centerX" id="G7L-yZ-0bC"/>
+                            <constraint firstItem="EbR-zW-zRh" firstAttribute="top" secondItem="3Kq-NN-Nhy" secondAttribute="bottom" constant="39" id="GtM-vH-HbI"/>
                             <constraint firstItem="3Kq-NN-Nhy" firstAttribute="baseline" secondItem="hUp-q4-sIH" secondAttribute="baseline" id="IJ0-rl-xKW"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="EbR-zW-zRh" secondAttribute="bottom" constant="8" id="TGu-CE-g7c"/>
                             <constraint firstItem="G27-qA-OUg" firstAttribute="top" secondItem="iQr-d4-Ar2" secondAttribute="bottom" constant="81" id="TKG-a5-7bY"/>
                             <constraint firstItem="N6M-ke-GIV" firstAttribute="baseline" secondItem="7vT-mF-fsi" secondAttribute="baseline" id="UO7-SX-Zml"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hUp-q4-sIH" secondAttribute="trailing" constant="100" id="dF0-Xa-aFU"/>
@@ -100,6 +103,7 @@
                             <constraint firstItem="3Kq-NN-Nhy" firstAttribute="centerX" secondItem="N6M-ke-GIV" secondAttribute="centerX" id="lGB-xo-o9N"/>
                             <constraint firstItem="hUp-q4-sIH" firstAttribute="top" secondItem="7vT-mF-fsi" secondAttribute="bottom" constant="75" id="o1I-dp-gJR"/>
                             <constraint firstItem="iQr-d4-Ar2" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="pFR-10-avx"/>
+                            <constraint firstItem="EbR-zW-zRh" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="ti2-Yz-jR3"/>
                             <constraint firstItem="hUp-q4-sIH" firstAttribute="centerX" secondItem="G27-qA-OUg" secondAttribute="centerX" id="vqY-Zz-2IN"/>
                             <constraint firstItem="hI2-4E-BnB" firstAttribute="top" secondItem="iQr-d4-Ar2" secondAttribute="bottom" constant="50" id="xvW-JW-8vI"/>
                         </constraints>
@@ -197,7 +201,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-85" y="403"/>
         </scene>
     </scenes>
     <resources>

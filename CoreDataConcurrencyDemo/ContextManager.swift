@@ -1,11 +1,3 @@
-//
-//  ContextManager.swift
-//  CoreDataConcurrencyDemo
-//
-//  Created by Aaron Douglas on 8/3/14.
-//  Copyright (c) 2014 Automattic Inc. All rights reserved.
-//
-
 import Foundation
 import CoreData
 
@@ -19,7 +11,7 @@ public class ContextManager {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    lazy var managedObjectModel: NSManagedObjectModel = {
+    public var managedObjectModel: NSManagedObjectModel = {
         var modelPath = NSBundle.mainBundle().pathForResource("CoreDataDemo", ofType: "momd")
         var modelURL = NSURL.fileURLWithPath(modelPath)
         var model = NSManagedObjectModel(contentsOfURL: modelURL)
@@ -27,13 +19,15 @@ public class ContextManager {
         return model
     }()
 
-    lazy var applicationDocumentsDirectory: NSURL = {
+    var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.automattic.TestCoreDataMasterDetail" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls[urls.count-1] as NSURL
     }()
 
-    lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
+    public lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
+        NSLog("Providing SQLite persistent store coordinator")
+        
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("CoreDataDemo.sqlite")
         var options = [NSInferMappingModelAutomaticallyOption: true, NSMigratePersistentStoresAutomaticallyOption: true]
         var error: NSError? = nil
@@ -109,14 +103,18 @@ public class ContextManager {
             // While this is needed because we don't observe change notifications for the derived context, it
             // breaks concurrency rules for Core Data.  Provide a mechanism to destroy a derived context that
             // unregisters it from the save notification instead and rely upon that for merging.
-            self.saveContext(self.mainContext!)
+            let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
+            dispatch_after(when, dispatch_get_main_queue()) {
+                self.saveContext(self.mainContext!)
+            }
         }
     }
 
     @objc func mainContextDidSave(notification: NSNotification) {
-        saveContext(rootContext!)
+        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
+        dispatch_after(when, dispatch_get_main_queue()) {
+            self.saveContext(self.rootContext!)
+        }
     }
     
 }
-
-var contextManagerSharedInstance: ContextManager!

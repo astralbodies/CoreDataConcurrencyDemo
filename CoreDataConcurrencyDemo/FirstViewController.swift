@@ -1,16 +1,9 @@
-//
-//  FirstViewController.swift
-//  CoreDataConcurrencyDemo
-//
-//  Created by Aaron Douglas on 8/3/14.
-//  Copyright (c) 2014 Automattic Inc. All rights reserved.
-//
-
 import UIKit
 import CoreData
 
 class FirstViewController: UIViewController {
     
+    let contextManager: ContextManager = ContextManager()
     @IBOutlet var mainLabel: UILabel?
     @IBOutlet var backgroundLabel: UILabel?
     @IBOutlet var workerLabel: UILabel?
@@ -22,9 +15,9 @@ class FirstViewController: UIViewController {
         
         self.textView?.text = "Core Data stack initialized."
 
-        self.workerContext = contextManagerSharedInstance.newDerivedContext()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "mainContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: contextManagerSharedInstance.mainContext)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "backgroundContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: contextManagerSharedInstance.rootContext)
+        self.workerContext = contextManager.newDerivedContext()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "mainContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: contextManager.mainContext)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "backgroundContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: contextManager.rootContext)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "workerContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: self.workerContext)
     }
 
@@ -38,11 +31,11 @@ class FirstViewController: UIViewController {
         
         let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
         dispatch_after(when, dispatch_get_main_queue()) {
-            var context = contextManagerSharedInstance.mainContext!
+            var context = self.contextManager.mainContext!
             context.performBlock() {
                 var entity: AnyObject = NSEntityDescription.insertNewObjectForEntityForName("TestEntity", inManagedObjectContext: context)
                 
-                contextManagerSharedInstance.saveContext(context)
+                self.contextManager.saveContext(context)
             }
         }
     }
@@ -52,11 +45,11 @@ class FirstViewController: UIViewController {
         
         let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
         dispatch_after(when, dispatch_get_main_queue()) {
-            var context = contextManagerSharedInstance.rootContext!
+            var context = self.contextManager.rootContext!
             context.performBlock() {
                 var entity: AnyObject = NSEntityDescription.insertNewObjectForEntityForName("TestEntity", inManagedObjectContext: context)
                 
-                contextManagerSharedInstance.saveContext(context)
+                self.contextManager.saveContext(context)
             }
         }
     }
@@ -69,7 +62,7 @@ class FirstViewController: UIViewController {
             self.workerContext!.performBlock() {
                 var entity: AnyObject = NSEntityDescription.insertNewObjectForEntityForName("TestEntity", inManagedObjectContext: self.workerContext)
                 
-                contextManagerSharedInstance.saveDerivedContext(self.workerContext!)
+                self.contextManager.saveDerivedContext(self.workerContext!)
             }
         }
     }
@@ -84,15 +77,6 @@ class FirstViewController: UIViewController {
         dispatch_async(dispatch_get_main_queue()) {
             self.mainLabel!.backgroundColor = UIColor.greenColor()
         }
-        
-//        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
-//        dispatch_after(when, dispatch_get_main_queue()) {
-//            var context = contextManagerSharedInstance.rootContext!
-//            context.performBlock() {
-//                context.processPendingChanges()
-//                contextManagerSharedInstance.saveContext(context)
-//            }
-//        }
     }
     
     func backgroundContextDidSave(notification: NSNotification) {
@@ -105,16 +89,6 @@ class FirstViewController: UIViewController {
         dispatch_async(dispatch_get_main_queue()) {
             self.workerLabel!.backgroundColor = UIColor.greenColor()
         }
-
-        
-//        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
-//        dispatch_after(when, dispatch_get_main_queue()) {
-//            var context = contextManagerSharedInstance.mainContext!
-//            context.performBlock() {
-//                context.processPendingChanges()
-//                contextManagerSharedInstance.saveContext(context)
-//            }
-//        }
     }
 }
 

@@ -17,6 +17,9 @@
 		938BBBBE198F113600410245 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 938BBBBD198F113600410245 /* CoreData.framework */; };
 		9394277219954E0900B6CC51 /* TestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394277119954E0900B6CC51 /* TestEntity.swift */; };
 		93D37AAC198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93D37AAA198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld */; };
+		93D782F219986066008AE45C /* TestContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D782F119986066008AE45C /* TestContextManager.swift */; };
+		93D782F4199945C7008AE45C /* ExampleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D782F3199945C7008AE45C /* ExampleService.swift */; };
+		93D782F61999465C008AE45C /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D782F51999465C008AE45C /* Example.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		9394277019954E0800B6CC51 /* CoreDataConcurrencyDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataConcurrencyDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		9394277119954E0900B6CC51 /* TestEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEntity.swift; sourceTree = "<group>"; };
 		93D37AAB198FFF6F00213BBD /* CoreDataDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataDemo.xcdatamodel; sourceTree = "<group>"; };
+		93D782F119986066008AE45C /* TestContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestContextManager.swift; sourceTree = "<group>"; };
+		93D782F3199945C7008AE45C /* ExampleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleService.swift; sourceTree = "<group>"; };
+		93D782F51999465C008AE45C /* Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,15 +94,10 @@
 		938BBB99198EF98E00410245 /* CoreDataConcurrencyDemo */ = {
 			isa = PBXGroup;
 			children = (
-				9394276F19954DED00B6CC51 /* Model */,
 				938BBB9C198EF98E00410245 /* AppDelegate.swift */,
-				938BBBBB198EFB1D00410245 /* ContextManager.swift */,
-				938BBB9E198EF98E00410245 /* FirstViewController.swift */,
-				938BBBA5198EF98E00410245 /* Images.xcassets */,
-				938BBBA2198EF98E00410245 /* Main.storyboard */,
-				938BBBA0198EF98E00410245 /* SecondViewController.swift */,
+				93D782F819994882008AE45C /* Data */,
 				938BBB9A198EF98E00410245 /* Supporting Files */,
-				93D37AAA198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld */,
+				93D782F719994866008AE45C /* UI */,
 			);
 			path = CoreDataConcurrencyDemo;
 			sourceTree = "<group>";
@@ -115,6 +116,7 @@
 			children = (
 				938BBBB1198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift */,
 				938BBBAF198EF98F00410245 /* Supporting Files */,
+				93D782F119986066008AE45C /* TestContextManager.swift */,
 			);
 			path = CoreDataConcurrencyDemoTests;
 			sourceTree = "<group>";
@@ -130,9 +132,32 @@
 		9394276F19954DED00B6CC51 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				93D37AAA198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld */,
+				93D782F51999465C008AE45C /* Example.swift */,
 				9394277119954E0900B6CC51 /* TestEntity.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		93D782F719994866008AE45C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				938BBB9E198EF98E00410245 /* FirstViewController.swift */,
+				938BBBA5198EF98E00410245 /* Images.xcassets */,
+				938BBBA2198EF98E00410245 /* Main.storyboard */,
+				938BBBA0198EF98E00410245 /* SecondViewController.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		93D782F819994882008AE45C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9394276F19954DED00B6CC51 /* Model */,
+				93D782F3199945C7008AE45C /* ExampleService.swift */,
+				938BBBBB198EFB1D00410245 /* ContextManager.swift */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,7 +263,9 @@
 				938BBB9D198EF98E00410245 /* AppDelegate.swift in Sources */,
 				9394277219954E0900B6CC51 /* TestEntity.swift in Sources */,
 				938BBB9F198EF98E00410245 /* FirstViewController.swift in Sources */,
+				93D782F61999465C008AE45C /* Example.swift in Sources */,
 				93D37AAC198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld in Sources */,
+				93D782F4199945C7008AE45C /* ExampleService.swift in Sources */,
 				938BBBBC198EFB1D00410245 /* ContextManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				938BBBB2198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift in Sources */,
+				93D782F219986066008AE45C /* TestContextManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
