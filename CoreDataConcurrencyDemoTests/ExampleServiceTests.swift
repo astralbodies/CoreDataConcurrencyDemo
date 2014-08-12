@@ -45,12 +45,17 @@ class ExampleServiceTests: XCTestCase {
         
         XCTAssertEqual(3, examplesThree.count, "There should be three examples")
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testGetExampleWithName() {
+        let example: Example? = exampleService!.getExample("Maple Bacon Yummies")
+        
+        XCTAssertNil(example, "There should be no Maple Bacon Yummies")
+        
+        let example2 = exampleService?.addExample("Maple Bacon Yummies", date: NSDate(), count: 1)
+        contextManager.saveContext(contextManager.mainContext!)
+        
+        var example3: Example? = exampleService?.getExample("Maple Bacon Yummies")
+        XCTAssertNotNil(example3, "There should now be a Maple Bacon Yummies")
+        XCTAssertEqual("Maple Bacon Yummies", example3!.name, "Name should match")
     }
-
 }

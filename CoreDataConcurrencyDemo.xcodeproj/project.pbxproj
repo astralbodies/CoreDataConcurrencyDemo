@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		938BBB9D198EF98E00410245 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938BBB9C198EF98E00410245 /* AppDelegate.swift */; };
 		938BBB9F198EF98E00410245 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938BBB9E198EF98E00410245 /* FirstViewController.swift */; };
-		938BBBA1198EF98E00410245 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938BBBA0198EF98E00410245 /* SecondViewController.swift */; };
 		938BBBA4198EF98E00410245 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 938BBBA2198EF98E00410245 /* Main.storyboard */; };
 		938BBBA6198EF98E00410245 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 938BBBA5198EF98E00410245 /* Images.xcassets */; };
 		938BBBB2198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938BBBB1198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift */; };
@@ -38,7 +37,6 @@
 		938BBB9B198EF98E00410245 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		938BBB9C198EF98E00410245 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		938BBB9E198EF98E00410245 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		938BBBA0198EF98E00410245 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		938BBBA3198EF98E00410245 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		938BBBA5198EF98E00410245 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		938BBBAB198EF98F00410245 /* CoreDataConcurrencyDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataConcurrencyDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,7 +146,6 @@
 				938BBB9E198EF98E00410245 /* FirstViewController.swift */,
 				938BBBA5198EF98E00410245 /* Images.xcassets */,
 				938BBBA2198EF98E00410245 /* Main.storyboard */,
-				938BBBA0198EF98E00410245 /* SecondViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -262,7 +259,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				938BBBA1198EF98E00410245 /* SecondViewController.swift in Sources */,
 				938BBB9D198EF98E00410245 /* AppDelegate.swift in Sources */,
 				9394277219954E0900B6CC51 /* TestEntity.swift in Sources */,
 				938BBB9F198EF98E00410245 /* FirstViewController.swift in Sources */,
