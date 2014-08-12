@@ -2,18 +2,25 @@ import Foundation
 import CoreData
 
 public class ExampleService {
-    var contextManager: ContextManager
+    var managedObjectContext: NSManagedObjectContext
     
-    public init(contextManager: ContextManager) {
-        self.contextManager = contextManager
+    public init(managedObjectContext: NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
     }
     
     public func getAllExamples() -> Array<Example> {
-        return Array<Example>()
+        let fetchRequest = NSFetchRequest(entityName: "Example")
+        
+        return managedObjectContext.executeFetchRequest(fetchRequest, error: nil) as Array<Example>
     }
     
     public func addExample(name: String, date: NSDate, count: Int16) -> Example? {
-        return nil
+        let example: Example = NSEntityDescription.insertNewObjectForEntityForName("Example", inManagedObjectContext: managedObjectContext) as Example
+        example.name = name
+        example.date = date
+        example.count = NSNumber.numberWithShort(count)
+        
+        return example
     }
     
     public func getExample(name: String) -> Example? {
