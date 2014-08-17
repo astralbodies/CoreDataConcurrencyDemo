@@ -110,12 +110,12 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="l2e-Fr-b8q"/>
-                                <exclude reference="F9M-53-iux"/>
                                 <exclude reference="TKG-a5-7bY"/>
-                                <exclude reference="dF0-Xa-aFU"/>
-                                <exclude reference="o1I-dp-gJR"/>
                                 <exclude reference="4C4-o9-91O"/>
                                 <exclude reference="kJT-J9-GL5"/>
+                                <exclude reference="dF0-Xa-aFU"/>
+                                <exclude reference="o1I-dp-gJR"/>
+                                <exclude reference="F9M-53-iux"/>
                             </mask>
                         </variation>
                     </view>

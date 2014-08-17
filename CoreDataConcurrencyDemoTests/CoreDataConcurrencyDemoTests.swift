@@ -22,7 +22,7 @@ class CoreDataConcurrencyDemoTests: XCTestCase {
             return true
         }
         
-        var expectRoot = self.expectationForNotification(NSManagedObjectContextDidSaveNotification, object: contextManager!.rootContext, handler: handler)
+        var expectRoot:XCTestExpectation = self.expectationForNotification(NSManagedObjectContextDidSaveNotification, object: contextManager!.rootContext, handler: handler)
         
         contextManager!.saveContext(contextManager!.mainContext!)
         
