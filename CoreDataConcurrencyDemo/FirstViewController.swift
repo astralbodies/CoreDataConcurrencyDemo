@@ -3,7 +3,7 @@ import CoreData
 
 class FirstViewController: UIViewController {
     
-    let contextManager: ContextManager = ContextManager()
+    let coreDataStack: CoreDataStack = CoreDataStack()
     @IBOutlet var mainLabel: UILabel?
     @IBOutlet var backgroundLabel: UILabel?
     @IBOutlet var workerLabel: UILabel?
@@ -15,9 +15,9 @@ class FirstViewController: UIViewController {
         
         self.textView?.text = "Core Data stack initialized."
 
-        self.workerContext = contextManager.newDerivedContext()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "mainContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: contextManager.mainContext)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "backgroundContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: contextManager.rootContext)
+        self.workerContext = coreDataStack.newDerivedContext()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "mainContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: coreDataStack.mainContext)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "backgroundContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: coreDataStack.rootContext)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "workerContextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: self.workerContext)
     }
 
@@ -35,11 +35,11 @@ class FirstViewController: UIViewController {
         
         let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
         dispatch_after(when, dispatch_get_main_queue()) {
-            var context = self.contextManager.mainContext!
+            var context = self.coreDataStack.mainContext!
             context.performBlock() {
                 var entity: AnyObject = NSEntityDescription.insertNewObjectForEntityForName("TestEntity", inManagedObjectContext: context)
                 
-                self.contextManager.saveContext(context)
+                self.coreDataStack.saveContext(context)
             }
         }
     }
@@ -53,11 +53,11 @@ class FirstViewController: UIViewController {
         
         let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
         dispatch_after(when, dispatch_get_main_queue()) {
-            var context = self.contextManager.rootContext!
+            var context = self.coreDataStack.rootContext!
             context.performBlock() {
                 var entity: AnyObject = NSEntityDescription.insertNewObjectForEntityForName("TestEntity", inManagedObjectContext: context)
                 
-                self.contextManager.saveContext(context)
+                self.coreDataStack.saveContext(context)
             }
         }
     }
@@ -74,7 +74,7 @@ class FirstViewController: UIViewController {
             self.workerContext!.performBlock() {
                 var entity: AnyObject = NSEntityDescription.insertNewObjectForEntityForName("TestEntity", inManagedObjectContext: self.workerContext)
                 
-                self.contextManager.saveDerivedContext(self.workerContext!)
+                self.coreDataStack.saveDerivedContext(self.workerContext!)
             }
         }
     }

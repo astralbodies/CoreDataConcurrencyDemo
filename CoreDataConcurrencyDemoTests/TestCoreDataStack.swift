@@ -2,7 +2,7 @@ import CoreDataConcurrencyDemo
 import Foundation
 import CoreData
 
-class TestContextManager: ContextManager {
+class TestCoreDataStack: CoreDataStack {
     override lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         NSLog("Providing in-memory persistent store coordinator")
         var options = [NSInferMappingModelAutomaticallyOption: true, NSMigratePersistentStoresAutomaticallyOption: true]

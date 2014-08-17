@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 
-public class ContextManager {
+public class CoreDataStack {
 
     public init() {
         
@@ -20,7 +20,6 @@ public class ContextManager {
     }()
 
     var applicationDocumentsDirectory: NSURL = {
-        // The directory the application uses to store the Core Data store file. This code uses a directory named "com.automattic.TestCoreDataMasterDetail" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls[urls.count-1] as NSURL
     }()
@@ -100,9 +99,7 @@ public class ContextManager {
                 abort()
             }
 
-            // While this is needed because we don't observe change notifications for the derived context, it
-            // breaks concurrency rules for Core Data.  Provide a mechanism to destroy a derived context that
-            // unregisters it from the save notification instead and rely upon that for merging.
+            // Time delay added for demo purposes
             let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
             dispatch_after(when, dispatch_get_main_queue()) {
                 self.saveContext(self.mainContext!)
@@ -111,6 +108,7 @@ public class ContextManager {
     }
 
     @objc func mainContextDidSave(notification: NSNotification) {
+        // Time delay added for demo purposes
         let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC) / 2)
         dispatch_after(when, dispatch_get_main_queue()) {
             self.saveContext(self.rootContext!)

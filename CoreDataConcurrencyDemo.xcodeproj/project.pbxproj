@@ -12,11 +12,11 @@
 		938BBBA4198EF98E00410245 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 938BBBA2198EF98E00410245 /* Main.storyboard */; };
 		938BBBA6198EF98E00410245 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 938BBBA5198EF98E00410245 /* Images.xcassets */; };
 		938BBBB2198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938BBBB1198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift */; };
-		938BBBBC198EFB1D00410245 /* ContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938BBBBB198EFB1D00410245 /* ContextManager.swift */; };
+		938BBBBC198EFB1D00410245 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938BBBBB198EFB1D00410245 /* CoreDataStack.swift */; };
 		938BBBBE198F113600410245 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 938BBBBD198F113600410245 /* CoreData.framework */; };
 		9394277219954E0900B6CC51 /* TestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394277119954E0900B6CC51 /* TestEntity.swift */; };
 		93D37AAC198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93D37AAA198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld */; };
-		93D782F219986066008AE45C /* TestContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D782F119986066008AE45C /* TestContextManager.swift */; };
+		93D782F219986066008AE45C /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D782F119986066008AE45C /* TestCoreDataStack.swift */; };
 		93D782F4199945C7008AE45C /* ExampleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D782F3199945C7008AE45C /* ExampleService.swift */; };
 		93D782F61999465C008AE45C /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D782F51999465C008AE45C /* Example.swift */; };
 		93D782FA199948D2008AE45C /* ExampleServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D782F9199948D2008AE45C /* ExampleServiceTests.swift */; };
@@ -42,12 +42,12 @@
 		938BBBAB198EF98F00410245 /* CoreDataConcurrencyDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataConcurrencyDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		938BBBB0198EF98F00410245 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		938BBBB1198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataConcurrencyDemoTests.swift; sourceTree = "<group>"; };
-		938BBBBB198EFB1D00410245 /* ContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextManager.swift; sourceTree = "<group>"; };
+		938BBBBB198EFB1D00410245 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		938BBBBD198F113600410245 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9394277019954E0800B6CC51 /* CoreDataConcurrencyDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataConcurrencyDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		9394277119954E0900B6CC51 /* TestEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEntity.swift; sourceTree = "<group>"; };
 		93D37AAB198FFF6F00213BBD /* CoreDataDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataDemo.xcdatamodel; sourceTree = "<group>"; };
-		93D782F119986066008AE45C /* TestContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestContextManager.swift; sourceTree = "<group>"; };
+		93D782F119986066008AE45C /* TestCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		93D782F3199945C7008AE45C /* ExampleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleService.swift; sourceTree = "<group>"; };
 		93D782F51999465C008AE45C /* Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
 		93D782F9199948D2008AE45C /* ExampleServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleServiceTests.swift; sourceTree = "<group>"; };
@@ -115,9 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				938BBBB1198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift */,
-				938BBBAF198EF98F00410245 /* Supporting Files */,
-				93D782F119986066008AE45C /* TestContextManager.swift */,
 				93D782F9199948D2008AE45C /* ExampleServiceTests.swift */,
+				938BBBAF198EF98F00410245 /* Supporting Files */,
+				93D782F119986066008AE45C /* TestCoreDataStack.swift */,
 			);
 			path = CoreDataConcurrencyDemoTests;
 			sourceTree = "<group>";
@@ -155,7 +155,7 @@
 			children = (
 				9394276F19954DED00B6CC51 /* Model */,
 				93D782F3199945C7008AE45C /* ExampleService.swift */,
-				938BBBBB198EFB1D00410245 /* ContextManager.swift */,
+				938BBBBB198EFB1D00410245 /* CoreDataStack.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -265,7 +265,7 @@
 				93D782F61999465C008AE45C /* Example.swift in Sources */,
 				93D37AAC198FFF6F00213BBD /* CoreDataDemo.xcdatamodeld in Sources */,
 				93D782F4199945C7008AE45C /* ExampleService.swift in Sources */,
-				938BBBBC198EFB1D00410245 /* ContextManager.swift in Sources */,
+				938BBBBC198EFB1D00410245 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				938BBBB2198EF98F00410245 /* CoreDataConcurrencyDemoTests.swift in Sources */,
-				93D782F219986066008AE45C /* TestContextManager.swift in Sources */,
+				93D782F219986066008AE45C /* TestCoreDataStack.swift in Sources */,
 				93D782FA199948D2008AE45C /* ExampleServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

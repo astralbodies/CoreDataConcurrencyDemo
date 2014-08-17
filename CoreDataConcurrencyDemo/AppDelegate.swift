@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  CoreDataConcurrencyDemo
-//
-//  Created by Aaron Douglas on 8/3/14.
-//  Copyright (c) 2014 Automattic Inc. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain

@@ -4,13 +4,13 @@ import CoreData
 import CoreDataConcurrencyDemo
 
 class ExampleServiceTests: XCTestCase {
-    let contextManager: ContextManager = ContextManager()
+    let coreDataStack: CoreDataStack = TestCoreDataStack()
     var exampleService: ExampleService?
     
     override func setUp() {
         super.setUp()
 
-        exampleService = ExampleService(managedObjectContext: contextManager.mainContext!)
+        exampleService = ExampleService(managedObjectContext: coreDataStack.mainContext!)
     }
     
     override func tearDown() {
@@ -35,9 +35,9 @@ class ExampleServiceTests: XCTestCase {
             return true
         }
 
-        let expectation = self.expectationForNotification(NSManagedObjectContextDidSaveNotification, object: contextManager.mainContext, handler: handler)
+        let expectation = self.expectationForNotification(NSManagedObjectContextDidSaveNotification, object: coreDataStack.mainContext, handler: handler)
         
-        contextManager.saveContext(contextManager.mainContext!)
+        coreDataStack.saveContext(coreDataStack.mainContext!)
         
         self.waitForExpectationsWithTimeout(2.0, handler: nil)
         
@@ -52,7 +52,7 @@ class ExampleServiceTests: XCTestCase {
         XCTAssertNil(example, "There should be no Maple Bacon Yummies")
         
         let example2 = exampleService?.addExample("Maple Bacon Yummies", date: NSDate(), count: 1)
-        contextManager.saveContext(contextManager.mainContext!)
+        coreDataStack.saveContext(coreDataStack.mainContext!)
         
         var example3: Example? = exampleService?.getExample("Maple Bacon Yummies")
         XCTAssertNotNil(example3, "There should now be a Maple Bacon Yummies")
