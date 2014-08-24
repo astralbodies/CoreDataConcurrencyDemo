@@ -13,7 +13,7 @@ public class CoreDataStack {
     
     public var managedObjectModel: NSManagedObjectModel = {
         var modelPath = NSBundle.mainBundle().pathForResource("CoreDataDemo", ofType: "momd")
-        var modelURL = NSURL.fileURLWithPath(modelPath)
+        var modelURL = NSURL.fileURLWithPath(modelPath!)
         var model = NSManagedObjectModel(contentsOfURL: modelURL)
         
         return model
